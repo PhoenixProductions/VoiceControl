@@ -6,17 +6,33 @@ using System.Threading.Tasks;
 
 namespace EliteLibrary
 {
-    class PilotLogManager
+    class PilotLogManager : VoiceControlLib.IVoiceControlPlugin
     {
         static PilotLogManager _manager;
 
-        public static PilotLogManager GetManager()
+        public void Configure(VoiceControlLib.IVoiceControl host)
         {
-            if (_manager == null) { 
+            return;// throw new NotImplementedException();
+        }
+
+
+        public void Initialise(VoiceControlLib.IVoiceControl host)
+        {
+            //throw new NotImplementedException();
+            host.AddCommand(new EliteLibrary.PilotLogArrivalCommand());
+        }
+
+
+        public static PilotLogManager Instance()
+        {
+
+            if (_manager == null)
+            {
                 //initialise a new manager at the current location
                 _manager = new PilotLogManager();
             }
             return _manager;
+            
         }
 
         string _filePath;
@@ -29,8 +45,9 @@ namespace EliteLibrary
 
         private List<LogEntry> _log;
 
-        protected PilotLogManager()
+        public PilotLogManager()
         {
+
             _filePath = "";
             _log = new List<LogEntry>();
         }
@@ -44,7 +61,7 @@ namespace EliteLibrary
         }
 
 
-        void Dump()
+        public void Dump()
         {
             foreach (LogEntry e in _log)
             {
@@ -60,5 +77,7 @@ namespace EliteLibrary
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

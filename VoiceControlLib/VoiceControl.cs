@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace VoiceControlLib
 {
-    public class VoiceControl
+    public class VoiceControl : VoiceControlLib.IVoiceControl
     {
         static SpeechRecognitionEngine _recognitionEngine;
         public static SpeechSynthesizer _synth;
@@ -24,6 +24,10 @@ namespace VoiceControlLib
         /// </summary>
         Dictionary<string, VoiceControlLib.IVoiceCommand> _commands;
 
+        /// <summary>
+        /// List of Plugin Assemblies loaded
+        /// </summary>
+        static Dictionary<string, IVoiceControlPlugin> _plugins = new Dictionary<string,IVoiceControlPlugin>();
 
         /// <summary>
         /// A location in which grammar documents are found
@@ -126,7 +130,10 @@ namespace VoiceControlLib
             Console.WriteLine(@"Starting");
             _recognitionEngine.RecognizeAsync(RecognizeMode.Multiple);
             Console.WriteLine(@"Started");
-
+        }
+        public void Stop()
+        {
+            _recognitionEngine.RecognizeAsyncCancel();
         }
 
         /// <summary>
@@ -157,6 +164,13 @@ namespace VoiceControlLib
             }
             VoiceControl._synth.SpeakAsync(Replaced);
 
+            
+        }
+
+        public void TestInput(string input)
+        {
+            
+            _recognitionEngine.EmulateRecognize(input);
             
         }
         /// <summary>
@@ -237,15 +251,9 @@ namespace VoiceControlLib
         /// Returns a list of commands that can be used.
         /// </summary>
         /// <returns></returns>
-        public static Type[] GetAvailableActions(Type type)
+        public static Type[] GetAvailable(Type type)
         {
-        //    var type = typeof(RestrictToType);
             var types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(p => type.IsAssignableFrom(p));
-
-            foreach(var t in types) {
-
-                Console.WriteLine(t);             
-            }
 
             return types.ToArray<Type>();
         }
@@ -279,12 +287,51 @@ namespace VoiceControlLib
         {
 
         }
+        // Plugin Management
+        public void LoadPlugin(string path)
+        {
+            System.Reflection.Assembly pluginAsm = System.Reflection.Assembly.LoadFile(path);
+            if (_plugins.ContainsKey(pluginAsm.FullName)) {
+                Console.WriteLine("Plugin "+ pluginAsm.FullName + " is already loaded.");
+                return;
+            }
+            //Configure the plugin
+            Type[] plugins = GetAvailable(typeof(IVoiceControlPlugin));
 
+            List<IVoiceControlPlugin> loadedPlugins = new List<IVoiceControlPlugin>();
+            int i = 0;
+            foreach (Type pluginType in plugins)
+            {
+                if (!pluginType.IsInterface)
+                {
+
+                    if (pluginType.GetMethod("Instance") == null)
+                    {
+                        Console.WriteLine(pluginType.FullName + " does not conform to standard Instance static propery missing");
+                        continue;
+                    }
+                    i++;
+                    Console.WriteLine(pluginType.FullName);
+                    IVoiceControlPlugin plugin = (IVoiceControlPlugin)pluginType.GetMethod("Instance").Invoke(null, null);
+
+                    //(VoiceControlLib.IAction)t.GetMethod("BuildAction").Invoke(null, null);
+                    loadedPlugins.Add(plugin);
+                }
+            }
+            Console.WriteLine(pluginAsm.FullName + " defines " + i + " plugins");
+            foreach (IVoiceControlPlugin plugin in loadedPlugins)
+            {
+                plugin.Configure(this);
+                plugin.Initialise(this);
+            }
+
+
+        }
         // Action management
         public static Type[] GetActions()
         {
 
-            return GetAvailableActions(typeof(IAction));
+            return GetAvailable(typeof(IAction));
         }
         // Options management
         public static string ReplacePlaceholders(string subject)

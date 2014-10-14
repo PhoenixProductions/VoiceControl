@@ -52,6 +52,8 @@
     <Compile Include="Builders\IBuilderForm.cs" />
     <Compile Include="IAction.cs" />
     <Compile Include="IVoiceCommand.cs" />
+    <Compile Include="IVoiceControl.cs" />
+    <Compile Include="IVoiceControlPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

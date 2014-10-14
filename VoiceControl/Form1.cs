@@ -26,7 +26,8 @@ namespace VoiceControl
             vc = new VoiceControlLib.VoiceControl(Application.UserAppDataPath);
             vc.Recognised += vc_Recognised;
             vc.Start();
-
+            
+            vc.LoadPlugin(@"C:\Users\michael\Documents\Visual Studio 2013\Projects\VoiceControl\VoiceControl\bin\Debug\EliteLibrary.dll");
 
         }
 
@@ -43,6 +44,21 @@ namespace VoiceControl
                 //then add resulting command definition into the VC lib
                 vc.AddCommand(f.Command);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            vc.TestInput(textBox1.Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            vc.Start();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            vc.Stop();
         }
     }
 }

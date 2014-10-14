@@ -13,7 +13,7 @@ namespace VCTestHarness
 {
     public partial class Form1 : Form
     {
-        VoiceControl _vc;
+        VoiceControlLib.VoiceControl _vc;
         public Form1()
         {
             InitializeComponent();

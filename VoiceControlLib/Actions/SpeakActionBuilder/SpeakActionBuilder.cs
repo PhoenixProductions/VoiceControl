@@ -37,5 +37,10 @@ namespace VoiceControlLib.Builders
                 _action = value;
             }
         }
+
+        private void SpeakActionBuilder_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -78,6 +78,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VoiceControlAPI\VoiceControlAPI.csproj">
+      <Project>{58e043b1-f319-4a0b-86dd-3acba95dcac5}</Project>
+      <Name>VoiceControlAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VoiceControlLib\VoiceControlLib.csproj">
       <Project>{385ba379-4e22-468e-af05-c97d5a3fdcf2}</Project>
       <Name>VoiceControlLib</Name>

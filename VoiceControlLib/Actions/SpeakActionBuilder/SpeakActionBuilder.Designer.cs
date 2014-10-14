@@ -84,6 +84,7 @@
             this.Controls.Add(this.button1);
             this.Name = "SpeakActionBuilder";
             this.Text = "Speak Action";
+            this.Load += new System.EventHandler(this.SpeakActionBuilder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
