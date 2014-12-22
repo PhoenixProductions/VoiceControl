@@ -42,7 +42,7 @@
             // 
             // AddActionBtn
             // 
-            this.AddActionBtn.Location = new System.Drawing.Point(386, 12);
+            this.AddActionBtn.Location = new System.Drawing.Point(302, 12);
             this.AddActionBtn.Name = "AddActionBtn";
             this.AddActionBtn.Size = new System.Drawing.Size(75, 23);
             this.AddActionBtn.TabIndex = 0;
@@ -52,14 +52,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(32, 158);
+            this.textBox1.Location = new System.Drawing.Point(12, 70);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(284, 20);
             this.textBox1.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(323, 158);
+            this.button1.Location = new System.Drawing.Point(302, 67);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(129, 78);
+            this.button2.Location = new System.Drawing.Point(12, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -79,7 +79,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(129, 107);
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(12, 41);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;
@@ -91,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 307);
+            this.ClientSize = new System.Drawing.Size(388, 109);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

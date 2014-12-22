@@ -9,6 +9,7 @@ using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Speech.Recognition.SrgsGrammar;
 using System.Diagnostics;
+using Microsoft.Build.Utilities;
 
 namespace VoiceControlLib
 {
@@ -16,6 +17,8 @@ namespace VoiceControlLib
     {
         static SpeechRecognitionEngine _recognitionEngine;
         public static SpeechSynthesizer _synth;
+
+        protected static VoiceControlLib.ILogger _logger;
 
         //public static Dictionary<string, Variable> Options = new Dictionary<string, Variable>();
         public static Dictionary<string, string> Options = new Dictionary<string, string>();
@@ -43,6 +46,7 @@ namespace VoiceControlLib
         public VoiceControl(string grammarPath)
         {
             _grammarPath = grammarPath;
+            _logger = new Logger.FileLogger();
 
             Options.Add("selfname", "Dave");
             Options.Add("cmdrname", "Michael");       
@@ -169,8 +173,9 @@ namespace VoiceControlLib
 
         public void TestInput(string input)
         {
-            
+            _recognitionEngine.RecognizeAsyncCancel();
             _recognitionEngine.EmulateRecognize(input);
+
             
         }
         /// <summary>
@@ -290,6 +295,10 @@ namespace VoiceControlLib
         // Plugin Management
         public void LoadPlugin(string path)
         {
+            if (!System.IO.File.Exists(path))
+            {
+                return;
+            }
             System.Reflection.Assembly pluginAsm = System.Reflection.Assembly.LoadFile(path);
             if (_plugins.ContainsKey(pluginAsm.FullName)) {
                 Console.WriteLine("Plugin "+ pluginAsm.FullName + " is already loaded.");
@@ -364,5 +373,11 @@ namespace VoiceControlLib
             }
             return outText;
         }
+
+        protected void Log(string message)
+        {
+            System.Diagnostics.Debug.WriteLine(message);
+        }
     }
+    
 }
