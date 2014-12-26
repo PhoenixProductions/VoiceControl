@@ -300,6 +300,7 @@ namespace VoiceControlLib
                 Console.WriteLine(path + " doesn't exist");
                 return;
             }
+            path = System.IO.Path.GetFullPath(path);
             System.Reflection.Assembly pluginAsm = System.Reflection.Assembly.LoadFile(path);
             if (_plugins.ContainsKey(pluginAsm.FullName)) {
                 Console.WriteLine("Plugin "+ pluginAsm.FullName + " is already loaded.");

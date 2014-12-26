@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceControl", "VoiceControl\VoiceControl.csproj", "{5595225F-D49F-4C4B-9FE0-D72E176AFF8A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F93EABD1-A0A0-4AB8-8A8B-A9BAD4CE24B2} = {F93EABD1-A0A0-4AB8-8A8B-A9BAD4CE24B2}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceControlLib", "VoiceControlLib\VoiceControlLib.csproj", "{385BA379-4E22-468E-AF05-C97D5A3FDCF2}"
 EndProject

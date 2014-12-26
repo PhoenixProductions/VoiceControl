@@ -14,13 +14,22 @@ namespace EliteLibrary
             Choices c = new Choices(
                  new string[] {
                         "arrived at",
+                        "arrived in",
                         "reached"
                     }
                 );
             SemanticResultKey arrivals = new SemanticResultKey("logarrival", c.ToGrammarBuilder());
             GrammarBuilder arrivalsbuilder = new GrammarBuilder();
             arrivalsbuilder.Append(arrivals);
-            arrivalsbuilder.AppendDictation();
+            //read system names from defined file
+            string[] systems = System.IO.File.ReadAllLines(System.IO.Path.GetFullPath(EliteLibrary.Properties.Settings.Default.systemsfile);
+
+            Choices sysordic = new Choices(systems);
+            GrammarBuilder systemsbuilder = new GrammarBuilder();
+            systemsbuilder.Append(sysordic);
+            systemsbuilder.AppendDictation();
+
+            arrivalsbuilder.Append(systemsbuilder);
 
             /*
              * Phrases are:

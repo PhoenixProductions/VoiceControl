@@ -5,5 +5,8 @@
     <Setting Name="logfilepath" Type="System.String" Scope="User">
       <Value Profile="(Default)">./pilotlog.txt</Value>
     </Setting>
+    <Setting Name="systemsfile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">./systems.txt</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

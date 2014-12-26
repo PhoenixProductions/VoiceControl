@@ -28,7 +28,8 @@ namespace VoiceControl
             
             
             
-            vc.LoadPlugin(@"C:\Users\michael\Documents\Visual Studio 2013\Projects\VoiceControl\VoiceControl\bin\Debug\EliteLibrary.dll");
+            vc.LoadPlugin("./EliteLibrary.dll");
+//@"C:\Users\michael\Documents\Visual Studio 2013\Projects\VoiceControl\VoiceControl\bin\Debug\EliteLibrary.dll");
 
             this.Start();
         }

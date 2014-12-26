@@ -34,5 +34,17 @@ namespace EliteLibrary.Properties {
                 this["logfilepath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("./systems.txt")]
+        public string systemsfile {
+            get {
+                return ((string)(this["systemsfile"]));
+            }
+            set {
+                this["systemsfile"] = value;
+            }
+        }
     }
 }
