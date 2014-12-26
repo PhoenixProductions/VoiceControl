@@ -26,10 +26,11 @@ namespace VoiceControl
             vc = new VoiceControlLib.VoiceControl(Application.UserAppDataPath);
             vc.Recognised += vc_Recognised;
             
-            vc.Start();
+            
             
             vc.LoadPlugin(@"C:\Users\michael\Documents\Visual Studio 2013\Projects\VoiceControl\VoiceControl\bin\Debug\EliteLibrary.dll");
 
+            this.Start();
         }
 
         void vc_Recognised(object sender, VoiceControlLib.RecognisedEventArgs e)

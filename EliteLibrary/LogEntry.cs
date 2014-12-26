@@ -45,5 +45,10 @@ namespace EliteLibrary
             set { _entry = value; }
         }
 
+        public override string ToString()
+        {
+            return _created + ":" + _summary + ":" + _entry;
+        }
+
     }
 }

@@ -28,8 +28,13 @@ namespace EliteLibrary
 
             if (_manager == null)
             {
+                System.Diagnostics.Debug.WriteLine("Initialising Manager instance");
                 //initialise a new manager at the current location
                 _manager = new PilotLogManager();
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Re-using Manager instance");
             }
             return _manager;
             
@@ -45,19 +50,26 @@ namespace EliteLibrary
 
         private List<LogEntry> _log;
 
+
+
         public PilotLogManager()
         {
 
-            _filePath = "";
+            _filePath = EliteLibrary.Properties.Settings.Default.logfilepath;
+            Console.WriteLine("Log location: " + _filePath);
             _log = new List<LogEntry>();
         }
         
         public void Add(LogEntry e) {
             _log.Add(e);
+            Console.WriteLine("Writing to " + _filePath);
+            System.IO.StreamWriter s =  System.IO.File.AppendText(_filePath);
+            s.WriteLine(e.ToString());
+            s.Close();
         }
 
         public void Add(string Summary) {
-            _log.Add(new LogEntry(Summary));
+            this.Add(new LogEntry(Summary));
         }
 
 

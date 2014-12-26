@@ -18,7 +18,7 @@ namespace VoiceControlLib
         static SpeechRecognitionEngine _recognitionEngine;
         public static SpeechSynthesizer _synth;
 
-        protected static VoiceControlLib.ILogger _logger;
+        static VoiceControlLib.ILogger _logger;
 
         //public static Dictionary<string, Variable> Options = new Dictionary<string, Variable>();
         public static Dictionary<string, string> Options = new Dictionary<string, string>();
@@ -297,6 +297,7 @@ namespace VoiceControlLib
         {
             if (!System.IO.File.Exists(path))
             {
+                Console.WriteLine(path + " doesn't exist");
                 return;
             }
             System.Reflection.Assembly pluginAsm = System.Reflection.Assembly.LoadFile(path);

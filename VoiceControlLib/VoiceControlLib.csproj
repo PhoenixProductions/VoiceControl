@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\SendKeyAction.cs" />
+    <Compile Include="Actions\SendKeyActionBuilder\SendKeyActionBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actions\SendKeyActionBuilder\SendKeyActionBuilder.Designer.cs">
+      <DependentUpon>SendKeyActionBuilder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Actions\SpeakAction.cs" />
     <Compile Include="Actions\SpeakActionBuilder\SpeakActionBuilder.cs">
       <SubType>Form</SubType>
@@ -71,6 +78,9 @@
     <Content Include="Commands\CommandsReadme.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Actions\SendKeyActionBuilder\SendKeyActionBuilder.resx">
+      <DependentUpon>SendKeyActionBuilder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Actions\SpeakActionBuilder\SpeakActionBuilder.resx">
       <DependentUpon>SpeakActionBuilder.cs</DependentUpon>
     </EmbeddedResource>

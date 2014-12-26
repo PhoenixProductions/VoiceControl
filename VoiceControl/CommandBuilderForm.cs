@@ -80,6 +80,15 @@ namespace VoiceControl
         private void ButtonSaveCommand_Click(object sender, EventArgs e)
         {
             // persist the actions in the action list out in to the User Speech command object
+            VoiceControlLib.Commands.UserSpeechCommand u = new VoiceControlLib.Commands.UserSpeechCommand(UserSpeechTrigger.Text);
+            foreach (ActionListItem item in ListActions.Items)
+            {
+                System.Diagnostics.Debug.WriteLine(item.Action.Explain());
+                u.Actions.Add(item.Action);
+            }
+            this.Command = u;
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            
         }
     }
      class PotentialActionListItem

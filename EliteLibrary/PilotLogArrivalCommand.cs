@@ -48,14 +48,14 @@ namespace EliteLibrary
         }
         public override void Execute(object sender, System.Speech.Recognition.SpeechRecognizedEventArgs e)
         {
-            Console.WriteLine("EliteLibrary handling");
+            Console.WriteLine("EliteLibrary handling1");
             PilotLogManager manager = PilotLogManager.Instance();
             Console.WriteLine(e.Result.Semantics);
             if (e.Result.Semantics.ContainsKey("logarrival"))
             {
                 string destination = e.Result.Text.Replace(e.Result.Semantics["logarrival"].Value.ToString(), "");
                 manager.Add("Arrived in " + destination.TrimStart());
-                manager.Dump();
+                //manager.Dump();
             }
             if (e.Result.Semantics.ContainsKey("left"))
             {
